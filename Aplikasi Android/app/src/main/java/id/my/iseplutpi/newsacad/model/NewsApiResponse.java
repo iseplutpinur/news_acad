@@ -1,8 +1,9 @@
 package id.my.iseplutpi.newsacad.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class NewsApiResponse {
+public class NewsApiResponse implements Serializable {
     String status;
     int totalResult;
 
@@ -22,13 +23,13 @@ public class NewsApiResponse {
         this.totalResult = totalResult;
     }
 
-    public List<NewsHeadline> getArticles() {
+    public List<NewsHeadlines> getArticles() {
         return articles;
     }
 
-    public void setArticles(List<NewsHeadline> articles) {
+    public void setArticles(List<NewsHeadlines> articles) {
         this.articles = articles;
     }
 
-    List<NewsHeadline> articles;
+    List<NewsHeadlines> articles;
 }

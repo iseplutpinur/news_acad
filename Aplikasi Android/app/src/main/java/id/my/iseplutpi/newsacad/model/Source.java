@@ -1,6 +1,8 @@
 package id.my.iseplutpi.newsacad.model;
 
-public class Source {
+import java.io.Serializable;
+
+public class Source implements Serializable {
     String id = "";
     String name = "";
 
