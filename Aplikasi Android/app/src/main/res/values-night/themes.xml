@@ -3,7 +3,8 @@
     <style name="Theme.NewsAcad" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#224099</item>
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryVariant">#111111
+        </item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -19,7 +20,8 @@
     <style name="Theme.NewsAcad.noActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryVariant">#111111
+        </item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
