@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,22 +21,22 @@ import id.my.iseplutpi.newsacad.model.NewsHeadlines;
 public class MainActivity extends AppCompatActivity implements SelectListener, View.OnClickListener {
     RecyclerView recyclerView;
     CustomAdapter adapter;
-    ProgressDialog dialog;
 
     Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7;
     private static String lastCategory = "technology";
 
+    private static String lastQuery = "";
+
     SearchView searchView;
+
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dialog = new ProgressDialog(this);
-        dialog.setTitle("Fetching News Article...");
-        dialog.show();
-
+        // btutton category
         btn_1 = findViewById(R.id.btn_1);
         btn_1.setOnClickListener(this);
         btn_2 = findViewById(R.id.btn_2);
@@ -51,15 +52,16 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         btn_7 = findViewById(R.id.btn_7);
         btn_7.setOnClickListener(this);
 
+        // search
         searchView = findViewById(R.id.search_view);
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                dialog.setTitle("Fetching news article of " + query);
-                dialog.show();
+                Toast.makeText(MainActivity.this, "Fetching news article of " + query, Toast.LENGTH_SHORT).show();
+                swipeRefreshLayout.setRefreshing(true);
                 RequestManager manager = new RequestManager(MainActivity.this);
                 manager.getNewsHeadlines(listener, "", query);
+                setLastQuery(query);
                 return true;
             }
 
@@ -69,8 +71,21 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
             }
         });
 
+        // refresh
+        swipeRefreshLayout = findViewById(R.id.news_refresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                RequestManager manager = new RequestManager(MainActivity.this);
+                manager.getNewsHeadlines(listener, MainActivity.getLastCategory(), MainActivity.getLastQuery());
+            }
+        });
+        swipeRefreshLayout.setRefreshing(true);
+        Toast.makeText(MainActivity.this, "Fetching News Article...", Toast.LENGTH_SHORT).show();
+
+        // request api
         RequestManager manager = new RequestManager(this);
-        manager.getNewsHeadlines(listener, getLastCategory(), null);
+        manager.getNewsHeadlines(listener, getLastCategory(), getLastQuery());
     }
 
     private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
@@ -81,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
             } else {
                 showNews(list);
             }
-            dialog.dismiss();
+            swipeRefreshLayout.setRefreshing(false);
         }
 
         @Override
@@ -108,8 +123,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
     public void onClick(View v) {
         Button button = (Button) v;
         String category = button.getText().toString();
-        dialog.setTitle("Fetching news articles of " + category);
-        dialog.show();
+        swipeRefreshLayout.setRefreshing(true);
         RequestManager manager = new RequestManager(this);
         manager.getNewsHeadlines(listener, category, null);
         setLastCategory(category);
@@ -121,5 +135,13 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
 
     public static void setLastCategory(String lastCategory) {
         MainActivity.lastCategory = lastCategory;
+    }
+
+    public static String getLastQuery() {
+        return lastQuery;
+    }
+
+    public static void setLastQuery(String lastQuery) {
+        MainActivity.lastQuery = lastQuery;
     }
 }
