@@ -18,13 +18,14 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
                 android:layout_margin="8dp"
                 app:cardElevation="8dp">
 
                 <LinearLayout
+                    android:layout_margin="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -72,6 +73,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:padding="8dp"
                 android:layout_marginHorizontal="6dp"
                 android:id="@+id/text_detail_detail"
                 android:layout_width="match_parent"
@@ -83,6 +85,7 @@
             </TextView>
 
             <TextView
+                android:padding="8dp"
                 android:id="@+id/text_detail_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

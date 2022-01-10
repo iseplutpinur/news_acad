@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
     RecyclerView recyclerView;
     CustomAdapter adapter;
 
-    Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7;
-    private static String lastCategory = "technology";
+    Button btn_1, btn_2, btn_3, btn_4, btn_5;
+    private static String lastCategory = "";
 
     private static String lastQuery = "";
 
@@ -46,10 +46,6 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         btn_4.setOnClickListener(this);
         btn_5 = findViewById(R.id.btn_5);
         btn_5.setOnClickListener(this);
-        btn_6 = findViewById(R.id.btn_6);
-        btn_6.setOnClickListener(this);
-        btn_7 = findViewById(R.id.btn_7);
-        btn_7.setOnClickListener(this);
 
         // search
         searchView = findViewById(R.id.search_view);

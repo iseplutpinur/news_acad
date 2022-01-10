@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:padding="6dp"
-                android:text="business"
+                android:text="astronomi"
                 android:textSize="12sp" />
 
             <Button
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:padding="6dp"
-                android:text="entertainment"
+                android:text="matematika"
                 android:textSize="12sp" />
 
             <Button
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:padding="6dp"
-                android:text="general"
+                android:text="fisika"
                 android:textSize="12sp" />
 
             <Button
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:padding="6dp"
-                android:text="health"
+                android:text="sejarah"
                 android:textSize="12sp" />
 
             <Button
@@ -58,25 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:padding="6dp"
-                android:text="sience"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/btn_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="6dp"
-                android:padding="6dp"
-                android:text="sports"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/btn_7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="6dp"
-                android:padding="6dp"
-                android:text="technology"
+                android:text="health"
                 android:textSize="12sp" />
         </LinearLayout>
     </HorizontalScrollView>
