@@ -15,7 +15,7 @@ import retrofit2.http.Query;
 public class RequestManager {
     Context context;
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v2/")
+            .baseUrl("https://news-acad.iseplutpi.my.id/api/news/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
@@ -51,7 +51,7 @@ public class RequestManager {
     }
 
     public interface CallNewsApi {
-        @GET("top-headlines")
+        @GET("acad")
         Call<NewsApiResponse> callHeadlines(
                 @Query("country") String country,
                 @Query("category") String category,
