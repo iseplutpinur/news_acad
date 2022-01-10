@@ -23,13 +23,13 @@ public class NewsApiResponse implements Serializable {
         this.totalResult = totalResult;
     }
 
-    public List<NewsHeadlines> getArticles() {
+    public List<News> getArticles() {
         return articles;
     }
 
-    public void setArticles(List<NewsHeadlines> articles) {
+    public void setArticles(List<News> articles) {
         this.articles = articles;
     }
 
-    List<NewsHeadlines> articles;
+    List<News> articles;
 }

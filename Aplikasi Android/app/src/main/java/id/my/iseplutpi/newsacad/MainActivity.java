@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import id.my.iseplutpi.newsacad.model.NewsApiResponse;
-import id.my.iseplutpi.newsacad.model.NewsHeadlines;
+import id.my.iseplutpi.newsacad.model.News;
 
 public class MainActivity extends AppCompatActivity implements SelectListener, View.OnClickListener {
     RecyclerView recyclerView;
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
                 Toast.makeText(MainActivity.this, "Fetching news article of " + query, Toast.LENGTH_SHORT).show();
                 swipeRefreshLayout.setRefreshing(true);
                 RequestManager manager = new RequestManager(MainActivity.this);
-                manager.getNewsHeadlines(listener, "", query);
+                manager.getNews(listener, "", query);
                 setLastQuery(query);
                 return true;
             }
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
             @Override
             public void onRefresh() {
                 RequestManager manager = new RequestManager(MainActivity.this);
-                manager.getNewsHeadlines(listener, MainActivity.getLastCategory(), MainActivity.getLastQuery());
+                manager.getNews(listener, MainActivity.getLastCategory(), MainActivity.getLastQuery());
             }
         });
         swipeRefreshLayout.setRefreshing(true);
@@ -85,12 +84,12 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
 
         // request api
         RequestManager manager = new RequestManager(this);
-        manager.getNewsHeadlines(listener, getLastCategory(), getLastQuery());
+        manager.getNews(listener, getLastCategory(), getLastQuery());
     }
 
     private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
         @Override
-        public void onFetchData(List<NewsHeadlines> list, String message) {
+        public void onFetchData(List<News> list, String message) {
             if (list.isEmpty()) {
                 Toast.makeText(MainActivity.this, "No Data Found !!", Toast.LENGTH_SHORT).show();
             } else {
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         }
     };
 
-    private void showNews(List<NewsHeadlines> list) {
+    private void showNews(List<News> list) {
         recyclerView = findViewById(R.id.recycle_main);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
@@ -114,9 +113,9 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
     }
 
     @Override
-    public void OnNewsClick(NewsHeadlines headlines) {
+    public void OnNewsClick(News news) {
         startActivity(new Intent(MainActivity.this, DetailsActivity.class)
-                .putExtra("data", headlines));
+                .putExtra("data", news));
     }
 
     @Override
@@ -125,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         String category = button.getText().toString();
         swipeRefreshLayout.setRefreshing(true);
         RequestManager manager = new RequestManager(this);
-        manager.getNewsHeadlines(listener, category, null);
+        manager.getNews(listener, category, null);
         setLastCategory(category);
     }
 

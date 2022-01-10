@@ -8,10 +8,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import id.my.iseplutpi.newsacad.model.NewsHeadlines;
+import id.my.iseplutpi.newsacad.model.News;
 
 public class DetailsActivity extends AppCompatActivity {
-    NewsHeadlines headlines;
+    News headlines;
     TextView txt_title, txt_author, txt_time, txt_detail, txt_content;
     ImageView img_news;
 
@@ -27,7 +27,7 @@ public class DetailsActivity extends AppCompatActivity {
         txt_content = findViewById(R.id.text_detail_content);
         img_news = findViewById(R.id.img_detail_news);
 
-        headlines = (NewsHeadlines) getIntent().getSerializableExtra("data");
+        headlines = (News) getIntent().getSerializableExtra("data");
 
         txt_title.setText(headlines.getTitle());
         txt_author.setText(headlines.getAuthor());

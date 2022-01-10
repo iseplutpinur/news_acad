@@ -2,7 +2,7 @@ package id.my.iseplutpi.newsacad.model;
 
 import java.io.Serializable;
 
-public class NewsHeadlines implements Serializable {
+public class News implements Serializable {
     Source source = null;
     String author = "";
     String title = "";

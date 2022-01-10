@@ -1,5 +1,6 @@
 package id.my.iseplutpi.newsacad;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +13,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import id.my.iseplutpi.newsacad.model.NewsHeadlines;
+import id.my.iseplutpi.newsacad.model.News;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     private Context context;
-    private List<NewsHeadlines> headlines;
+    private List<News> headlines;
     private SelectListener listener;
 
-    public CustomAdapter(Context context, List<NewsHeadlines> list, SelectListener listener) {
+    public CustomAdapter(Context context, List<News> list, SelectListener listener) {
         this.context = context;
         this.headlines = list;
         this.listener = listener;
@@ -33,11 +34,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
         this.context = context;
     }
 
-    public List<NewsHeadlines> getHeadlines() {
+    public List<News> getHeadlines() {
         return headlines;
     }
 
-    public void setHeadlines(List<NewsHeadlines> headlines) {
+    public void setHeadlines(List<News> headlines) {
         this.headlines = headlines;
     }
 
@@ -48,9 +49,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.text_title.setText(headlines.get(position).getTitle());
-        holder.text_source.setText(headlines.get(position).getSource().getName());
+        holder.text_author.setText(headlines.get(position).getAuthor());
 
         if (headlines.get(position).getUrlToImage() != null) {
             Picasso.get().load(headlines.get(position).getUrlToImage()).into(holder.img_headline);
