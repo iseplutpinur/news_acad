@@ -1,5 +1,6 @@
 package id.my.iseplutpi.newsacad;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -8,6 +9,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -25,6 +29,25 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
     private static String lastCategory = "";
 
     private static String lastQuery = "";
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_help:
+                Intent myIntent = new Intent(this, AboutActivity.class);
+                startActivity(myIntent);
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     SearchView searchView;
 
