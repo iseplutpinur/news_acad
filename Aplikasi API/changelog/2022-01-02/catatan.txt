@@ -1,0 +1,14 @@
+admin
+  menu password all acount type
+
+frontend
+  media sosial [clear]
+  foto bg visi misi
+
+
+Atribut artikel
+  - kategori
+  - tag
+  - dll
+Artikel utama
+integrasi ke frontend

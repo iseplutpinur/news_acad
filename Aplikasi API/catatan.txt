@@ -1,0 +1,8 @@
+source => manual
+author => created_by
+title => nama
+url => base_url + slug
+description => excerpt
+urlToImage => foto
+publishedAt => created_at
+content => detail
